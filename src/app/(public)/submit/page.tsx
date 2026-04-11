@@ -93,9 +93,12 @@ export default function ManuscriptSubmissionPage() {
   // Add co-author
   const addCoAuthor = () => {
     if (
-      !currentCoAuthor.name
+      !currentCoAuthor.name ||
+      !currentCoAuthor.email ||
+      !currentCoAuthor.faculty ||
+      !currentCoAuthor.affiliation
     ) {
-      toast.error('Please fill in the name for the co-author');
+      toast.error('Please fill in all required fields (Name, Email, Faculty, Affiliation) for the co-author');
       return;
     }
 
@@ -756,7 +759,7 @@ export default function ManuscriptSubmissionPage() {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Email Address
+                        Email Address *
                       </label>
                       <input
                         type="email"
@@ -770,7 +773,7 @@ export default function ManuscriptSubmissionPage() {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Faculty/Department
+                        Faculty/Department *
                       </label>
                       <input
                         type="text"
@@ -784,7 +787,7 @@ export default function ManuscriptSubmissionPage() {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Affiliation
+                        Affiliation *
                       </label>
                       <input
                         type="text"
