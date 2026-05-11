@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Search, Loader2 } from "lucide-react";
 import { publicationApi, PublishedArticle } from "@/services/api";
+import { toast, Toaster } from "sonner";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -147,7 +148,11 @@ export default function Header() {
 
             {/* Submit Button */}
             <Link
-               href="/submission"
+               href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                toast.error("We aren't accepting manuscripts now");
+              }}
               className="bg-white text-journal-maroon px-4 py-2 rounded-full font-semibold hover:bg-[#8690A0C2] transition-all shadow-lg hover:shadow-xl hover:scale-105 whitespace-nowrap"
             >
               Submit Manuscript
@@ -280,8 +285,12 @@ export default function Header() {
             </Link>
 
             <Link
-               href="/submission"
-               onClick={() => setIsMenuOpen(false)}
+                href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                toast.error("We aren't accepting manuscripts now");
+              }}
               className="bg-white text-journal-maroon px-6 py-3 rounded-full font-semibold hover:bg-[#8690A0C2] transition-all text-center shadow-lg hover:shadow-xl"
             >
               Submit Manuscript
@@ -289,6 +298,7 @@ export default function Header() {
           </nav>
         </div>
       )}
+      <Toaster position="top-center" richColors />
     </header>
   );
 }

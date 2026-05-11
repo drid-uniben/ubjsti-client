@@ -18,6 +18,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArticleSearch from "@/components/ArticleSearch";
 import { publicationApi, PublishedArticle, Issue, Volume } from "@/services/api";
+import { toast } from "sonner";
 
 export default function STIJournalHome() {
   const [currentIssueData, setCurrentIssueData] = useState<{
@@ -131,7 +132,11 @@ export default function STIJournalHome() {
             </div>
             <div className="block md:flex gap-4">
               <Link
-                 href="/submission"
+                 href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toast.error("We aren't accepting manuscripts now");
+                }}
                 className="inline-flex mb-4 md:mb-0 items-center gap-2 text-sm md:text-md bg-white text-journal-maroon px-4 py-4 md:px-8 md:py-4 rounded-full font-bold hover:bg-white transition-all shadow-xl hover:shadow-2xl hover:scale-105"
               >
                 <FileText className="h-5 w-5" />
